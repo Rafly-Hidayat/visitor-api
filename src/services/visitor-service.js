@@ -16,6 +16,9 @@ const create = async (request) => {
         throw new ResponseError(404, "Purpose not found")
     }
 
+    data.purposeId = findPurpose.purposeId;
+    data.purpose = findPurpose;
+
     const addVisitor = await prisma.visitor.create({
         data
     })
