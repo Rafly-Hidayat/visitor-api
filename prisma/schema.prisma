@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   userId    String   @id @default(uuid())
-  username  String   @db.VarChar(100)
+  username  String   @unique @db.VarChar(100)
   password  String   @db.VarChar(100)
   name      String   @db.VarChar(100)
   role      Role
@@ -28,14 +28,27 @@ enum Role {
 }
 
 model Visitor {
-  visitorId String   @id @default(uuid())
-  name      String   @db.VarChar(100)
-  idCard    String   @db.Text()
-  resident  String   @db.VarChar(100)
-  dateIn    String   @db.Text()
-  dateOut   String?  @db.Text()
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  visitorId   String   @id @default(uuid())
+  name        String   @db.VarChar(100)
+  idCard      String   @db.Text()
+  resident    String   @db.VarChar(100)
+  purposeId   String
+  description String   @db.Text()
+  dateIn      String   @db.Text()
+  dateOut     String?  @db.Text()
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+  purpose     Purpose  @relation(fields: [purposeId], references: [purposeId])
 
   @@map("visitors")
+}
+
+model Purpose {
+  purposeId String    @id @default(uuid())
+  purpose   String    @db.VarChar(100)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+  Visitor   Visitor[]
+
+  @@map("purposeVisit")
 }

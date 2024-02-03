@@ -3,6 +3,8 @@ import joi from "joi";
 const createVisitorValidation = joi.object({
     name: joi.string().max(100).required(),
     resident: joi.string().max(100).required(),
+    purpose: joi.string().max(100).required(),
+    description: joi.string().required(),
     idCard: joi.string().required(),
     dateIn: joi.string().required(),
 })
