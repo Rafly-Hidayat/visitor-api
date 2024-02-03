@@ -17,7 +17,7 @@ const create = async (request) => {
     }
 
     data.purposeId = findPurpose.purposeId;
-    data.purpose = findPurpose;
+    delete data.purpose
 
     const addVisitor = await prisma.visitor.create({
         data
