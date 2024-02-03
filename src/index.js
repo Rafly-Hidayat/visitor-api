@@ -17,9 +17,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/api", router);
-app.use("/", (req, res) => {
-    res.status(200).send("Welcome to my paradise!");
-});
+
 app.use(errorMiddleware)
 app.use("*", function (req, res) {
     res.status(404).send("PAGE NOT FOUND");
