@@ -42,7 +42,7 @@ const update = async (req, res, next) => {
 
 const remove = async (req, res, next) => {
     try {
-        await purposeService.delete(req.params.purposeId)
+        await purposeService.remove(req.params.purposeId)
         res.status(200).json({
             message: "Successfully remove purpose",
             data: null
