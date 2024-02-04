@@ -94,6 +94,6 @@ const getById = async (visitorId) => {
     }
 
     return visitor
-}
+} 
 
 export default { create, out, getALl, getIdCard, getById }
