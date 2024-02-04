@@ -65,4 +65,16 @@ const getIdCard = async (req, res, next) => {
     }
 }
 
-export default { create, out, getAll, getIdCard }
+const getById = async (req, res, next) => {
+    try {
+        const result = await visitorService.getById(req.params.visitorId)
+        res.status(200).json({
+            message: "Successfully get by id visitor",
+            data: result
+        })
+    } catch (error) {
+        next(error);
+    }
+}
+
+export default { create, out, getAll, getIdCard, getById }

@@ -83,4 +83,17 @@ const getIdCard = async (visitorId) => {
     return visitor.idCard
 }
 
-export default { create, out, getALl, getIdCard }
+const getById = async (visitorId) => {
+    const visitor = await prisma.visitor.findUnique({
+        where: { visitorId },
+        include: { purpose: true }
+    })
+
+    if (!visitor) {
+        throw new ResponseError(404, "visitor not found")
+    }
+
+    return visitor
+}
+
+export default { create, out, getALl, getIdCard, getById }

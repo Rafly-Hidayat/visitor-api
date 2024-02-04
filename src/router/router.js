@@ -16,6 +16,7 @@ router.get("/user", userController.getAll);
 // visitor
 router.post("/visitor", upload.single("idCard"), visitorController.create);
 router.get("/visitor", visitorController.getAll);
+router.get("/visitor/:visitorId", visitorController.getById);
 router.post("/visitor/out/:visitorId", visitorController.out);
 router.get("/visitor/idCard/:visitorId", visitorController.getIdCard);
 
