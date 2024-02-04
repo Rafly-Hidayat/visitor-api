@@ -57,6 +57,8 @@ const out = async (request) => {
         throw new ResponseError(404, "visitor not found")
     }
 
+    data.status = "OUTSIDE"
+
     return prisma.visitor.update({
         data,
         where: { visitorId: visitor.visitorId },
@@ -64,7 +66,9 @@ const out = async (request) => {
 }
 
 const getALl = async () => {
-    return prisma.visitor.findMany()
+    return prisma.visitor.findMany({
+        include: { purpose: true }
+    })
 }
 
 const getIdCard = async (visitorId) => {

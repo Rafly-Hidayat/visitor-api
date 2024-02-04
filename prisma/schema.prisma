@@ -34,6 +34,7 @@ model Visitor {
   resident    String   @db.VarChar(100)
   purposeId   String
   description String   @db.Text()
+  status      Status?  @default(INSIDE)
   dateIn      String   @db.Text()
   dateOut     String?  @db.Text()
   createdAt   DateTime @default(now())
@@ -41,6 +42,11 @@ model Visitor {
   purpose     Purpose  @relation(fields: [purposeId], references: [purposeId])
 
   @@map("visitors")
+}
+
+enum Status {
+  INSIDE
+  OUTSIDE
 }
 
 model Purpose {
